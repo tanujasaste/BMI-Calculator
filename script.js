@@ -1,0 +1,36 @@
+
+document.querySelector("#btn").addEventListener("click",()=>{
+    const height = parseInt(document.querySelector("#inputCM").value);
+    const weight = parseInt(document.querySelector("#inputKG").value);
+    const result =  document.querySelector("#output");
+    let height_status = false , weight_status = false;
+
+
+    if(height ==="" || isNaN(height) || (height<= 0)){
+        document.querySelector("#error").innerHTML = "Please Enter a Valid height";
+    }
+    else{
+        height_status = true;
+    }
+
+    if(weight ==="" || isNaN(weight) || (weight<= 0)){
+        document.querySelector("#error").innerHTML = "Please Enter a Valid weight";
+    }
+    else{
+        weight_status = true;
+    }
+
+    if(height_status && weight_status){
+        const bmi = ( weight / ((height * height)/10000)).toFixed(2);
+
+        if(bmi < 18.6){
+            result.innerHTML = "Under Weight :" +bmi;
+        }
+        else if(bmi > 18.6 && bmi< 24.9){
+            result.innerHTML = "Normal :" +bmi;
+        }
+        else{
+            result.innerHTML = "Over Weight :" +bmi;
+        }
+    }
+})
